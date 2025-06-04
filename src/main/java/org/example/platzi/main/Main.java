@@ -10,19 +10,17 @@ icono de la m para cargar la dependencia.
 clic en Add y listo
 */
 
+import org.example.platzi.util.DatabaseConnection;
+
 import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-        String url = "jdbc:mysql://localhost:3306/project";
-        String user = "root";
-        String pass = "Admin1234";
-
         //Try con recursos, a partir de una implementacion en Java 7.
         //Los recursos declarados dentro del bloque try se cierran automaticamente al
         //finalizar el bloque, ya sea que se haya producido una excepcion o no
-        try (Connection myConn = DriverManager.getConnection(url, user, pass);
+        try (Connection myConn = DatabaseConnection.getInstance();
              Statement myStamt = myConn.createStatement();
              ResultSet myRes = myStamt.executeQuery("SELECT * FROM employees");
         ) {
