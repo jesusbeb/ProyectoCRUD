@@ -10,8 +10,8 @@ public class Employee {
     private float salary;
 
     //Constructor vacio
-    public Employee(Integer id) {
-        this.id = id;
+    public Employee() {
+
     }
 
     //Constructor
@@ -22,6 +22,7 @@ public class Employee {
         this.ma_surname = ma_surname;
         this.email = email;
         this.salary = salary;
+
     }
 
     //Getters & Setters
@@ -75,13 +76,11 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", pa_surname='" + pa_surname + '\'' +
-                ", ma_surname='" + ma_surname + '\'' +
-                ", email='" + email + '\'' +
-                ", salary=" + salary +
-                '}';
+        return id +
+                ". " + first_name +
+                " " + pa_surname +
+                " " + ma_surname +
+                ", email: " + email +
+                ", salary: " + salary;
     }
 }
