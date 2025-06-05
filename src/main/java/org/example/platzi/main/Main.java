@@ -27,6 +27,22 @@ public class Main {
             Repository<Employee> repository = new EmployeeRepository();
 
             //Obtenemos los empleados
+            System.out.println("----Lista de empleados-----");
+            repository.findAll().forEach(System.out::println);
+
+            //Obtenemos empleado por id
+            System.out.println("Busqueda de empleado con id " +repository.getById(3));
+
+            //Guardamos un nuevo empleado
+            System.out.println("----Insertando un empleado----");
+            Employee employee = new Employee();
+            employee.setFirst_name("Diego");
+            employee.setPa_surname("Pimentel");
+            employee.setMa_surname("Gutierrez");
+            employee.setEmail("diego@mail.com");
+            employee.setSalary(19000);
+            repository.save(employee);
+            //Imprimimos la lista de empleados
             repository.findAll().forEach(System.out::println);
         }
     }
