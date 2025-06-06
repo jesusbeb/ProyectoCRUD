@@ -33,7 +33,7 @@ public class Main {
             //Obtenemos empleado por id
             System.out.println("Busqueda de empleado con id " +repository.getById(3));
 
-            //Guardamos un nuevo empleado
+            /*//Guardamos un nuevo empleado
             System.out.println("----Insertando un empleado----");
             Employee employee = new Employee();
             employee.setFirst_name("Diego");
@@ -42,6 +42,25 @@ public class Main {
             employee.setEmail("diego@mail.com");
             employee.setSalary(19000);
             repository.save(employee);
+            //Imprimimos la lista de empleados
+            repository.findAll().forEach(System.out::println);*/
+
+            /*//Actualizamos un empleado
+            System.out.println("----Actulizando un empleado----");
+            Employee employee = new Employee();
+            employee.setId(8);
+            employee.setFirst_name("Diego");
+            employee.setPa_surname("Pimentel");
+            employee.setMa_surname("Villanueva");
+            employee.setEmail("diego@mail.com");
+            employee.setSalary(30000);
+            repository.save(employee);
+            //Imprimimos la lista de empleados
+            repository.findAll().forEach(System.out::println);*/
+
+            //Eliminar un empleado
+            System.out.println("----Eliminamos un empleado----");
+            repository.delete(8);
             //Imprimimos la lista de empleados
             repository.findAll().forEach(System.out::println);
         }
