@@ -14,12 +14,18 @@ import org.example.platzi.model.Employee;
 import org.example.platzi.repository.EmployeeRepository;
 import org.example.platzi.repository.Repository;
 import org.example.platzi.util.DatabaseConnection;
+import org.example.platzi.view.SwingApp;
 
 import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
 
+        //Hacemos funcionar la app con una UI de Java Swing
+        SwingApp app = new SwingApp();
+        app.setVisible(true);
+
+    /* A partir de aqui hacia abajo, todolo comentado con una tabulacion, hace funcionar el programa en modo consola
         //Try con recursos, a partir de una implementacion en Java 7.
         //Los recursos declarados dentro del bloque try se cierran automaticamente al
         //finalizar el bloque, ya sea que se haya producido una excepcion o no
@@ -32,7 +38,7 @@ public class Main {
 
             //Obtenemos empleado por id
             System.out.println("Busqueda de empleado con id " +repository.getById(3));
-
+    */
             /*//Guardamos un nuevo empleado
             System.out.println("----Insertando un empleado----");
             Employee employee = new Employee();
@@ -57,12 +63,15 @@ public class Main {
             repository.save(employee);
             //Imprimimos la lista de empleados
             repository.findAll().forEach(System.out::println);*/
-
+    /*
             //Eliminar un empleado
             System.out.println("----Eliminamos un empleado----");
             repository.delete(8);
             //Imprimimos la lista de empleados
             repository.findAll().forEach(System.out::println);
         }
+     */
+
+
     }
 }
