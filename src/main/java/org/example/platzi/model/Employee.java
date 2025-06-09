@@ -1,5 +1,8 @@
 package org.example.platzi.model;
 
+/* Para trabajar con las transacciones, agregamos un nuevo campo en la BD, de tipo
+ VARCHAR(18), llamado CURP.
+* */
 public class Employee {
     //Atributos
     private Integer id;
@@ -8,6 +11,7 @@ public class Employee {
     private String ma_surname;
     private String email;
     private float salary;
+    private String curp;
 
     //Constructor vacio
     public Employee() {
@@ -15,14 +19,14 @@ public class Employee {
     }
 
     //Constructor
-    public Employee(Integer id, String first_name, String pa_surname, String ma_surname, String email, float salary) {
+    public Employee(Integer id, String first_name, String pa_surname, String ma_surname, String email, float salary, String curp) {
         this.id = id;
         this.first_name = first_name;
         this.pa_surname = pa_surname;
         this.ma_surname = ma_surname;
         this.email = email;
         this.salary = salary;
-
+        this.curp = curp;
     }
 
     //Getters & Setters
@@ -74,6 +78,14 @@ public class Employee {
         this.salary = salary;
     }
 
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp){
+        this.curp = curp;
+    }
+
     @Override
     public String toString() {
         return id +
@@ -81,6 +93,9 @@ public class Employee {
                 " " + pa_surname +
                 " " + ma_surname +
                 ", email: " + email +
-                ", salary: " + salary;
+                ", salary: " + salary +
+                ", CURP: " + curp;
     }
+
+
 }

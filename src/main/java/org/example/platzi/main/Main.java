@@ -10,20 +10,70 @@ icono de la m para cargar la dependencia.
 clic en Add y listo
 */
 
+/* Las transacciones se utilizan para garantizar la integridad y consistencia de los
+datos en una BD. Las transacciones se toman como una unidad atomica, se tienen diferentes
+operaciones que todas se deben cumplir. Se usa un commit sitodo sale bien, o
+un rollaback para regresar todosi algo falla.
+Principios ACID:
+Atomicity (Atomicidad)
+Consistency (Consistencia)
+Isolation (Aislamiento)
+Durability (Durabilidad)
+ */
+
 import org.example.platzi.model.Employee;
 import org.example.platzi.repository.EmployeeRepository;
 import org.example.platzi.repository.Repository;
 import org.example.platzi.util.DatabaseConnection;
-import org.example.platzi.view.SwingApp;
 
 import java.sql.*;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
 
+        try(Connection myConn = DatabaseConnection.getInstance()){
+
+            //Creamos un autocommit en falso porque por defecto tenemos un commit
+            //verdadero, es decir siempre que se hacen cambios, pases o no pasen,
+            if (myConn.getAutoCommit()){
+                myConn.setAutoCommit(false);
+            }
+
+            try{
+                Repository<Employee> repository = new EmployeeRepository(myConn);
+
+                System.out.println("-----Insertando un nuevo cliente-----");
+                Employee employee = new Employee();
+//                employee.setFirst_name("America");
+//                employee.setPa_surname("Lopez");
+//                employee.setMa_surname("Villa");
+//                employee.setEmail("america@mail.com");
+//                employee.setSalary(3000F);
+//                employee.setCurp("AMER12369842568719");
+//                repository.save(employee);
+//                myConn.commit(); //Ponemos el commit ya que lo habiamos quitado
+
+                //Intentamos guardar otro empleado con el mismo CURP para generar una
+                //excepcion, mandarnos al catch y dar un rollback
+                employee.setFirst_name("David");
+                employee.setPa_surname("Gutierrez");
+                employee.setMa_surname("Olvera");
+                employee.setEmail("david@mail.com");
+                employee.setSalary(3200F);
+                employee.setCurp("AMER12369842568719");
+                repository.save(employee);
+                myConn.commit();
+
+            } catch (SQLException e) {
+                myConn.rollback(); //Regresa al ultimo estado de la BD
+                throw new RuntimeException(e);
+            }
+        }
+
+
         //Hacemos funcionar la app con una UI de Java Swing
-        SwingApp app = new SwingApp();
-        app.setVisible(true);
+        /*SwingApp app = new SwingApp();
+        app.setVisible(true);*/
 
     /* A partir de aqui hacia abajo, todolo comentado con una tabulacion, hace funcionar el programa en modo consola
         //Try con recursos, a partir de una implementacion en Java 7.
